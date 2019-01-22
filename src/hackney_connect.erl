@@ -325,7 +325,7 @@ ssl_opts(Host, Options) ->
 
 ssl_opts_1(Host, Options) ->
   Insecure =  proplists:get_value(insecure, Options, false),
-  CACerts = certifi:cacerts(),
+%%  CACerts = certifi:cacerts(),
   case Insecure of
     true ->
       [{verify, verify_none}];
@@ -336,8 +336,8 @@ ssl_opts_1(Host, Options) ->
        },
       [{verify, verify_peer},
        {depth, 99},
-       {cacerts, CACerts},
-       {partial_chain, fun partial_chain/1},
+        {cacertfile, certifi:cacertfile()},
+%%       {partial_chain, fun partial_chain/1},
        {verify_fun, VerifyFun}]
   end.
 

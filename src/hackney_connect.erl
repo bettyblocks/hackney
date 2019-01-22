@@ -320,9 +320,7 @@ ssl_opts(Host, Options) ->
     SSLOpts ->
       SortedSslOptions = lists:keysort(1, ssl_opts_1(Host, Options)),
       SortedCustomOptions = lists:keysort(1, SSLOpts),
-      Result = lists:keymerge(0, SortedSslOptions, SortedCustomOptions),
-      erlang:display(Result),
-      Result
+      lists:keymerge(1, SortedSslOptions, SortedCustomOptions)
   end.
 
 ssl_opts_1(Host, Options) ->
